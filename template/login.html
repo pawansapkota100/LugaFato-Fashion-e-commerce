@@ -1,12 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
   <title>Login</title>
   <!-- Include Bootstrap CSS here -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>LugaFato - Fashion Ecommerce | Shop</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href='{% static "/img/core-img/Lugafatologo.png" %}'>
+    {% comment %} <link rel="icon" href={% static "/img/core-img/favicon.ico"%}> {% endcomment %}
+
+    <!-- Core Style CSS -->
+
+    <link rel="stylesheet" href="{% static 'product/' %}">
+    <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static "static/style.css" %}"> {% endcomment %}
+    <!-- Responsive CSS -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
 </head>
-<body>
-  <div class="container">
+<body><div>
+  {% include "top.html" %}</div>
+  <div class="container mt-5">
     <h2>Login</h2>
     <form method="POST" action="{% url 'login' %}">
       {% csrf_token %}

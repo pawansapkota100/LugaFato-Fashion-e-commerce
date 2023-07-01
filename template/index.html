@@ -10,10 +10,10 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>LugaFato- Fashion Ecommerce Template | Home</title>
+    
 
     <!-- Favicon  -->
-    <link rel="icon" href="static/img/core-img/Lugafatologo.png ">
+   
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="static/css/core-style.css">
@@ -21,105 +21,19 @@
 
     <!-- Responsive CSS -->
     <link href="static/css/responsive.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'product/' %}">
+    <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static "static/style.css" %}"> {% endcomment %}
+    <!-- Responsive CSS -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
 
 </head>
 
 <body>
-    {% comment %} list of catagories {% endcomment %}
-    
-    <div class="catagories-side-menu">
-        <!-- Close Icon -->
-        <div id="sideMenuClose">
-            <i class="ti-close"></i>
-        </div>
-        <!--  Side Nav  -->
-        <div class="nav-side-menu">
-            <div class="menu-list">
-                <h6>Categories</h6>
-                <ul id="menu-content" class="menu-content collapse out">
-                    <!-- Single Item -->
-                    {% for lists in Catagories %}
-                    <li data-toggle="collapse" data-target="#women" class="collapsed active">
-                        <a href="product/{{ lists.id }}">{{lists.name}}</a>
-                        {% endfor %}
-                    
-                    
-                   
-                   
-                    
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    
-    <div id="wrapper">
-        <!-- ****** Header Area Start ****** -->
-        <header class="header_area">
-            <!-- Top Header Area Start -->
-            <div class="top_header_area">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center justify-content-end">
-
-                        <div class="col-12 col-lg-7">
-                            <div class="top_single_area d-flex align-items-center">
-                                <!-- Logo Area -->
-                                <div class="top_logo">
-                                    <div class="d-flex align-items-left" style="height: 100px; width: 100px;">
-                                    <a href="#"><img src="static/img/core-img/Lugafatologo.png" alt=""></a>
-                                </div>
-                            </div>
-                                <!-- Cart & Menu Area -->
-                                <div class="header-cart-menu d-flex align-items-center ml-auto">
-                                    <!-- Cart Area -->
-                                   
-                                    <div class="cart">
-                                        {% load cart_tag %}
-                                        
-                                        <a href="#" id="header-cart-btn" target="_blank">
-                                            <span class="cart_quantity">{{request.session.cart|length}}</span> 
-                                            <i class="ti-bag"> </i> </a>
-                                        <!-- Cart List Area Start -->
-                                        <ul class="cart-list">
-                                          
-                                            {% for key,value in request.session.cart.items %}
-                                            <li>
-                                                <a href="#" class="image"><img src="{{value.image}}" class="cart-thumb" alt=""></a>
-                                                <div class="cart-item-desc">
-                                                    <h6><a href="#">{{value.name}}</a></h6>
-                                                    <p>{{value.quantity}}x - <span class="price:">{{value.price}} </span></p>
-                                                </div>
-                                                <span class="dropdown-product-remove"><i class="icon-cross"></i></span>
-                                            </li>
-                                            
-                                            
-                                            <li class="total">
-                                                <span class="pull-right">Price: {{ value.price|multiply:value.quantity }}</span>
-                                                {% endfor %}
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'cart_clear' %}" class="btn btn-sm btn-cart">clear</a>
-                                                <a href="checkout\" class="btn btn-sm btn-checkout">Checkout</a>
-                                                <span class="pull-right">Item:  {{request.session.cart|length}} </span>
-
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
-                                    <div class="header-right-side-menu ml-15">
-                                        <a href="#" id="sideMenuBtn"><i class="ti-menu" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+   
             {% include "nav-bar.html" %}
             <!-- Top Header Area End -->
-            
-        </header>
 
         <!-- ****** Header Area End ****** -->
         <div>
@@ -217,7 +131,7 @@
 
             <div class="container">
                 <div class="row karl-new-arrivals">
-
+                   
                     <!-- Single gallery Item Start -->
                     {% for item in list %}
 

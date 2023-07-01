@@ -1,6 +1,6 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
@@ -10,14 +10,18 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>LugaFato- Fashion Ecommerce | Shop</title>
+    
 
     <!-- Favicon  -->
-    <link rel="icon" href="{% static '/img/core-img/Lugafatologo.png'%}">
-    {% comment %} <link rel="icon" href={% static "/img/core-img/favicon.ico"%}> {% endcomment %}
+   
 
     <!-- Core Style CSS -->
+    <link rel="stylesheet" href="static/css/core-style.css">
+    <link rel="stylesheet" href="style.css">
 
+    <!-- Responsive CSS -->
+    <link href="static/css/responsive.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="{% static 'product/' %}">
     <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
     {% comment %} <link rel="stylesheet" href="{% static "static/style.css" %}"> {% endcomment %}
@@ -57,29 +61,10 @@
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                             </div>
-                                            <h5 class="price">$120.99 <span>$130</span></h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia expedita quibusdam aspernatur, sapiente consectetur accusantium perspiciatis praesentium eligendi, in fugiat?</p>
-                                            <a href="#">View Full Product Details</a>
+                                            
                                         </div>
                                         <!-- Add to Cart Form -->
-                                        <form class="cart" method="post">
-                                            <div class="quantity">
-                                                <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-
-                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
-
-                                                <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                            </div>
-                                            <button type="submit" name="addtocart" value="5" class="cart-submit">Add to cart</button>
-                                            <!-- Wishlist -->
-                                            <div class="modal_pro_wishlist">
-                                                <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
-                                            </div>
-                                            <!-- Compare -->
-                                            <div class="modal_pro_compare">
-                                                <a href="compare.html" target="_blank"><i class="ti-stats-up"></i></a>
-                                            </div>
-                                        </form>
+                                        
 
                                         <div class="share_wf mt-30">
                                             <p>Share With Friend</p>
@@ -108,146 +93,33 @@
                            
                             <div class="widget catagory mb-50">
                                 <!--  Side Nav  -->
-                                <div class="nav-side-menu">
-                                    <h6 class="mb-0">Catagories</h6>
-                                    <div class="menu-list">
-                                        <ul id="menu-content2" class="menu-content collapse out">
-                                            <!-- Single Item -->
-                                            <li data-toggle="collapse" data-target="#women2">
-                                                <a href="#">Woman wear</a>
-                                                <ul class="sub-menu collapse show" id="women2">
-                                                    <li><a href="#">Midi Dresses</a></li>
-                                                    <li><a href="#">Maxi Dresses</a></li>
-                                                    <li><a href="#">Prom Dresses</a></li>
-                                                    <li><a href="#">Little Black Dresses</a></li>
-                                                    <li><a href="#">Mini Dresses</a></li>
-                                                </ul>
-                                            </li>
-                                            <!-- Single Item -->
-                                            <li data-toggle="collapse" data-target="#man2" class="collapsed">
-                                                <a href="#">Man Wear</a>
-                                                <ul class="sub-menu collapse" id="man2">
-                                                    <li><a href="#">Man Dresses</a></li>
-                                                    <li><a href="#">Man Black Dresses</a></li>
-                                                    <li><a href="#">Man Mini Dresses</a></li>
-                                                </ul>
-                                            </li>
-                                            <!-- Single Item -->
-                                            <li data-toggle="collapse" data-target="#kids2" class="collapsed">
-                                                <a href="#">Children</a>
-                                                <ul class="sub-menu collapse" id="kids2">
-                                                    <li><a href="#">Children Dresses</a></li>
-                                                    <li><a href="#">Mini Dresses</a></li>
-                                                </ul>
-                                            </li>
-                                            <!-- Single Item -->
-                                            <li data-toggle="collapse" data-target="#bags2" class="collapsed">
-                                                <a href="#">Bags &amp; Purses</a>
-                                                <ul class="sub-menu collapse" id="bags2">
-                                                    <li><a href="#">Bags</a></li>
-                                                    <li><a href="#">Purses</a></li>
-                                                </ul>
-                                            </li>
-                                            <!-- Single Item -->
-                                            <li data-toggle="collapse" data-target="#eyewear2" class="collapsed">
-                                                <a href="#">Eyewear</a>
-                                                <ul class="sub-menu collapse" id="eyewear2">
-                                                    <li><a href="#">Eyewear Style 1</a></li>
-                                                    <li><a href="#">Eyewear Style 2</a></li>
-                                                    <li><a href="#">Eyewear Style 3</a></li>
-                                                </ul>
-                                            </li>
-                                            <!-- Single Item -->
-                                            <li data-toggle="collapse" data-target="#footwear2" class="collapsed">
-                                                <a href="#">Footwear</a>
-                                                <ul class="sub-menu collapse" id="footwear2">
-                                                    <li><a href="#">Footwear 1</a></li>
-                                                    <li><a href="#">Footwear 2</a></li>
-                                                    <li><a href="#">Footwear 3</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                
                             </div>
 
-                            <div class="widget price mb-50">
-                                <h6 class="widget-title mb-30">Filter by Price</h6>
-                                <div class="widget-desc">
-                                    <div class="slider-range">
-                                        <div data-min="0" data-max="3000" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="0" data-value-max="1350" data-label-result="Price:">
-                                            <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                        </div>
-                                        <div class="range-price">Price: 0 - 1350</div>
-                                    </div>
-                                </div>
-                            </div>
+                            
 
-                            <div class="widget color mb-70">
-                                <h6 class="widget-title mb-30">Filter by Color</h6>
-                                <div class="widget-desc">
-                                    <ul class="d-flex justify-content-between">
-                                        <li class="gray"><a href="#"><span>(3)</span></a></li>
-                                        <li class="red"><a href="#"><span>(25)</span></a></li>
-                                        <li class="yellow"><a href="#"><span>(112)</span></a></li>
-                                        <li class="green"><a href="#"><span>(72)</span></a></li>
-                                        <li class="teal"><a href="#"><span>(9)</span></a></li>
-                                        <li class="cyan"><a href="#"><span>(29)</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
 
-                            <div class="widget size mb-50">
-                                <h6 class="widget-title mb-30">Filter by Size</h6>
-                                <div class="widget-desc">
-                                    <ul class="d-flex justify-content-between">
-                                        <li><a href="#">XS</a></li>
-                                        <li><a href="#">S</a></li>
-                                        <li><a href="#">M</a></li>
-                                        <li><a href="#">L</a></li>
-                                        <li><a href="#">XL</a></li>
-                                        <li><a href="#">XXL</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                           
 
                             <div class="widget recommended">
                                 <h6 class="widget-title mb-30">Recommended</h6>
 
                                 <div class="widget-desc">
                                     <!-- Single Recommended Product -->
+                                   {% for data in filter %}
+                                    <div class="single-recommended-product d-flex mb-30">
+                                        <div class="single-recommended-thumb mr-3">
+                                            <img src="{{data.image.url}}" alt="">
+                                        </div>
+                                        <div class="single-recommended-desc">
+                                            <h6>{{data.name}}</h6>
+                                            <p>{{data.price}}</p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
                                    
-                                    <div class="single-recommended-product d-flex mb-30">
-                                        <div class="single-recommended-thumb mr-3">
-                                            <img src="{% static 'img/product-img/product-10.jpg'%}" alt="">
-                                        </div>
-                                        <div class="single-recommended-desc">
-                                            <h6>Men’s T-shirt</h6>
-                                            <p>$ 39.99</p>
-                                        </div>
-                                    </div>
-                                    <!-- Single Recommended Product -->
-                                    <div class="single-recommended-product d-flex mb-30">
-                                        <div class="single-recommended-thumb mr-3">
-                                            <img src="static/img/product-img/product-11.jpg" alt="">
-                                        </div>
-                                        <div class="single-recommended-desc">
-                                            <h6>Blue mini top</h6>
-                                            <p>$ 19.99</p>
-                                        </div>
-                                    </div>
-                                    <!-- Single Recommended Product -->
-                                    <div class="single-recommended-product d-flex">
-                                        <div class="single-recommended-thumb mr-3">
-                                            <img src="static/img/product-img/product-12.jpg" alt="">
-                                        </div>
-                                        <div class="single-recommended-desc">
-                                            <h6>Women’s T-shirt</h6>
-                                            <p>$ 39.99</p>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

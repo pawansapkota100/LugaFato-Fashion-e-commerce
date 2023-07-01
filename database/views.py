@@ -5,13 +5,15 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
 from django.contrib.auth.models import User
+from django.contrib.auth import logout
 
 
 # Create your views here.
 
 def index(request):
+    pro= Product.objects.all()
+    list= pro[:6]
     Catagories=Category.objects.all()
-    list= Product.objects.all()
     context={"list":list,"Catagories":Catagories}
    
     return render(request, "index.html",context)
@@ -24,7 +26,8 @@ def catagories(request,id):
 
 def store(request):
     list= Product.objects.all()
-    context={"list":list}
+    filtered_products = list[3:]
+    context={"list":list,"filter":filtered_products}
     return render(request, "shop.html",context)
 
 def product(request,id):
@@ -175,6 +178,10 @@ def login_view(request):
             return redirect('/error')
 
     return render(request, 'login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('/') 
 
 def error_view(request):
     return render(request, 'error.html')

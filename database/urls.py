@@ -26,6 +26,7 @@ urlpatterns = [
     # path('shopping_details/', views.checkout, name="shopping_details"),
     path('signup/', views.signup, name='signup'),
     path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
     path('error/', views.error_view, name='error'),
     path('shopping_details/', views.shopping_details, name='shopping_details'),
 
