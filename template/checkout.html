@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>Karl - Fashion Ecommerce Template | Checkout</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href='{% static "img/core-img/favicon.ico" %}'>
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href='{% static "css/core-style.css" %}'>
+    <link rel="stylesheet" href='{% static "style.css" %}'>
+
+    <!-- Responsive CSS -->
+    
+    <link href="{% static "css/responsive.css" %} "rel="stylesheet">
+
+</head>
+
+<body>
+    {% include "nav-bar.html" %}
+    <div id="wrapper">
+
+        <!-- ****** Checkout Area Start ****** -->
+        <div class="checkout_area section_padding_100">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12 col-md-6">
+                        <div class="checkout_details_area mt-50 clearfix">
+
+                            <div class="cart-page-heading">
+                                <h5>Billing Address</h5>
+                                
+                            </div>
+
+                            <form action="{% url 'shopping_details' %}" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <label for="first_name">Full Name <span>*</span></label>
+                                        <input type="text" class="form-control" name="full_name" value="" required>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="country">Country <span>*</span></label>
+                                        <select class="custom-select d-block w-100" id="country" name="country">
+                                        <option value="usa">Nepal</option>   
+                                        <option value="usa">United States</option>
+                                        <option value="uk">United Kingdom</option>
+                                        <option value="ger">Germany</option>
+                                        <option value="fra">France</option>
+                                        <option value="ind">India</option>
+                                        <option value="aus">Australia</option>
+                                        <option value="bra">Brazil</option>
+                                        <option value="cana">Canada</option>
+                                    </select>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="street_address">Address <span>*</span></label>
+                                        <input type="text" name= "address"class="form-control mb-3" id="street_address" value="">
+                                        <input type="text" class="form-control" id="street_address2" value="">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="phone_number">Phone No <span>*</span></label>
+                                        <input type="number" name= "phone" class="form-control" id="phone_number" min="0" value="">
+                                    </div>
+                                    <div class="col-12 mb-4">
+                                        <label for="email_address">Email Address <span>*</span></label>
+                                        <input type="email" name="email" class="form-control" id="email_address" value="">
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="custom-control custom-checkbox d-block mb-2">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1" required>
+                                            <label class="custom-control-label" for="customCheck1">Terms and conitions</label>
+                                        </div>
+                                       
+                                    
+                                    <button type= submit class="btn-danger mt-4 align-center">Place Order</button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+                        <div class="order-details-confirmation">
+
+                            <div class="cart-page-heading">
+                                <h5>Your Order</h5>
+                                <p>The Details</p>
+                            </div>
+
+                                
+
+                            {% load cart_tag %}
+                            <ul class="order-details-form mb-4">
+                                <li><span>Product</span> <span>Total</span></li>
+                                {% for key,value in request.session.cart.items %}
+
+
+                                <li><span>{{value.name}} <p>{{value.quantity}}x - <span class="price">{{value.price}} </span></p> </span></span> <span>{{ value.price|multiply:value.quantity }}</span></li>
+                                {% endfor %}
+                                <li><span>Subtotal</span> <span>${{ subtotal }}</span></li>
+                                <li><span>Shipping</span> <span>Free</span></li>
+                                <li><span>Total</span> <span>$59.90</span></li>
+                            </ul>
+
+
+                            {% comment %} <div id="accordion" role="tablist" class="mb-4">
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <h6 class="mb-0">
+                                            <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i>Paypal</a>
+                                        </h6>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integ er bibendum sodales arcu id te mpus. Ut consectetur lacus.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingTwo">
+                                        <h6 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-circle-o mr-3"></i>cash on delievery</a>
+                                        </h6>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quis in veritatis officia inventore, tempore provident dignissimos.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingThree">
+                                        <h6 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="fa fa-circle-o mr-3"></i>credit card</a>
+                                        </h6>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quo sint repudiandae suscipit ab soluta delectus voluptate, vero vitae</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% comment %} <div class="card">
+                                    <div class="card-header" role="tab" id="headingFour">
+                                        <h6 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour"><i class="fa fa-circle-o mr-3"></i>direct bank transfer</a>
+                                        </h6>
+                                    </div>
+                                    <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est cum autem eveniet saepe fugit, impedit magni.</p>
+                                        </div>
+                                    </div>
+                                </div> {% endcomment %}
+                            </div> 
+                            {% comment %} <a href="#" class="btn karl-checkout-btn">Place Order</a> {% endcomment %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- ****** Checkout Area End ****** -->
+
+        <!-- ****** Footer Area Start ****** -->
+        {% include "footer.html" %}
+        <!-- ****** Footer Area End ****** -->
+    </div>
+    <!-- /.wrapper end -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static "js/popper.min.js"%}"></script>
+    <!-- Bootstrap js -->
+    <script src='{% static "js/bootstrap.min.js" %}'></script>
+    <!-- Plugins js -->
+    <script src='{% static "js/plugins.js" %}'></script>
+    <!-- Active js -->
+    <script src='{% static "js/active.js" %}'></script>
+    
+
+</body>
+
+</html>

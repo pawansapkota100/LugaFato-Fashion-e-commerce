@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>LugaFato- Fashion Ecommerce Template | Home</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="static/img/core-img/Lugafatologo.png ">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="static/css/core-style.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Responsive CSS -->
+    <link href="static/css/responsive.css" rel="stylesheet">
+
+</head>
+
+<body>
+    {% comment %} list of catagories {% endcomment %}
+    
+    <div class="catagories-side-menu">
+        <!-- Close Icon -->
+        <div id="sideMenuClose">
+            <i class="ti-close"></i>
+        </div>
+        <!--  Side Nav  -->
+        <div class="nav-side-menu">
+            <div class="menu-list">
+                <h6>Categories</h6>
+                <ul id="menu-content" class="menu-content collapse out">
+                    <!-- Single Item -->
+                    {% for lists in Catagories %}
+                    <li data-toggle="collapse" data-target="#women" class="collapsed active">
+                        <a href="product/{{ lists.id }}">{{lists.name}}</a>
+                        {% endfor %}
+                    
+                    
+                   
+                   
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="wrapper">
+        <!-- ****** Header Area Start ****** -->
+        <header class="header_area">
+            <!-- Top Header Area Start -->
+            <div class="top_header_area">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center justify-content-end">
+
+                        <div class="col-12 col-lg-7">
+                            <div class="top_single_area d-flex align-items-center">
+                                <!-- Logo Area -->
+                                <div class="top_logo">
+                                    <div class="d-flex align-items-left" style="height: 100px; width: 100px;">
+                                    <a href="#"><img src="static/img/core-img/Lugafatologo.png" alt=""></a>
+                                </div>
+                            </div>
+                                <!-- Cart & Menu Area -->
+                                <div class="header-cart-menu d-flex align-items-center ml-auto">
+                                    <!-- Cart Area -->
+                                   
+                                    <div class="cart">
+                                        {% load cart_tag %}
+                                        
+                                        <a href="#" id="header-cart-btn" target="_blank">
+                                            <span class="cart_quantity">{{request.session.cart|length}}</span> 
+                                            <i class="ti-bag"> </i> </a>
+                                        <!-- Cart List Area Start -->
+                                        <ul class="cart-list">
+                                          
+                                            {% for key,value in request.session.cart.items %}
+                                            <li>
+                                                <a href="#" class="image"><img src="{{value.image}}" class="cart-thumb" alt=""></a>
+                                                <div class="cart-item-desc">
+                                                    <h6><a href="#">{{value.name}}</a></h6>
+                                                    <p>{{value.quantity}}x - <span class="price:">{{value.price}} </span></p>
+                                                </div>
+                                                <span class="dropdown-product-remove"><i class="icon-cross"></i></span>
+                                            </li>
+                                            
+                                            
+                                            <li class="total">
+                                                <span class="pull-right">Price: {{ value.price|multiply:value.quantity }}</span>
+                                                {% endfor %}
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'cart_clear' %}" class="btn btn-sm btn-cart">clear</a>
+                                                <a href="checkout\" class="btn btn-sm btn-checkout">Checkout</a>
+                                                <span class="pull-right">Item:  {{request.session.cart|length}} </span>
+
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="header-right-side-menu ml-15">
+                                        <a href="#" id="sideMenuBtn"><i class="ti-menu" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% include "nav-bar.html" %}
+            <!-- Top Header Area End -->
+            
+        </header>
+
+        <!-- ****** Header Area End ****** -->
+        <div>
+            {% include "discount_scheme.html" %}
+        </div>
+        <!-- ****** Welcome Slides Area Start ****** -->
+        <section class="welcome_area">
+            <div class="welcome_slides owl-carousel">
+                <!-- Single Slide Start -->
+                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(static/img/bg-img/bg-1.jpg);">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-12">
+                                <div class="welcome_slide_text">
+                                    <h6 data-animation="bounceInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
+                                    <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">Fashion Trends</h2>
+                                    <a href="#" class="btn karl-btn" data-animation="fadeInUp" data-delay="1s" data-duration="500ms">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Slide Start -->
+                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(static/img/bg-img/bg-4.jpg);">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-12">
+                                <div class="welcome_slide_text">
+                                    <h6 data-animation="fadeInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
+                                    <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">Summer Collection</h2>
+                                    <a href="#" class="btn karl-btn" data-animation="fadeInLeftBig" data-delay="1s" data-duration="500ms">Check Collection</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Slide Start -->
+                <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(static/img/bg-img/bg-2.jpg);">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-12">
+                                <div class="welcome_slide_text">
+                                    <h6 data-animation="fadeInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
+                                    <h2 data-animation="bounceInDown" data-delay="500ms" data-duration="500ms">Women Fashion</h2>
+                                    <a href="#" class="btn karl-btn" data-animation="fadeInRightBig" data-delay="1s" data-duration="500ms">Check Collection</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ****** Welcome Slides Area End ****** -->
+
+        <!-- ****** Top Catagory Area Start ****** -->
+        <section class="top_catagory_area d-md-flex clearfix">
+            <!-- Single Catagory -->
+            <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(static/img/bg-img/bg-2.jpg);">
+                <div class="catagory-content">
+                    <h6>On Accesories</h6>
+                    <h2>Sale 30%</h2>
+                    <a href="#" class="btn karl-btn">SHOP NOW</a>
+                </div>
+            </div>
+            <!-- Single Catagory -->
+            <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(static/img/bg-img/bg-3.jpg);">
+                <div class="catagory-content">
+                    <h6>in Bags excepting the new collection</h6>
+                    <h2>Designer bags</h2>
+                    <a href="#" class="btn karl-btn">SHOP NOW</a>
+                </div>
+            </div>
+        </section>
+        <!-- ****** Top Catagory Area End ****** -->
+
+
+
+
+
+        <!-- ****** New Arrivals Area Start ****** -->
+        <section class="new_arrivals_area section_padding_100_0 clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section_heading text-center">
+                            <h2>New Arrivals</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="container">
+                <div class="row karl-new-arrivals">
+
+                    <!-- Single gallery Item Start -->
+                    {% for item in list %}
+
+                    <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
+                        <!-- Product Image -->
+                        <div class="img-container">
+                            <div class="d-flex align-items-left" style="height: 300px; width: 300px;">
+                            <img src="{{item.image.url}}" alt="">
+                            </div>
+                            <div class="product-quicview">
+                                <a href="#" data-toggle="modal" data-target="#quickview"></a>
+                            </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <h6 class="product-price bg-dark text-white text-center">for {{item.category}}</h6>
+                            <h4 class="product-price">{{item.price}}</h4>
+                            <div class="row">
+                            <p class=col-8>{{item.name}}</p>
+                            <a href="product_details/{{item.id}}"><button type="button" class="btn btn-danger" >View Product</button></a>
+                            
+                            </div>
+                            <!-- Add to Cart -->
+                            <a href="{% url 'cart_add' item.id %}"class="add-to-cart-btn">ADD TO CART</a>
+                            
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+            </div>
+        </section>
+        <!-- ****** New Arrivals Area End ****** -->
+
+        <!-- ****** Offer Area Start ****** -->
+        <section class="offer_area height-700 section_padding_100 bg-img" style="background-image: url(static/img/bg-img/bg-5.jpg);">
+            <div class="container h-100">
+                <div class="row h-100 align-items-end justify-content-end">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <div class="offer-content-area wow fadeInUp" data-wow-delay="1s">
+                            <h2>White t-shirt <span class="karl-level">Hot</span></h2>
+                            <p>* Free shipping until 25 Dec 2017</p>
+                            <div class="offer-product-price">
+                                <h3><span class="regular-price">$25.90</span> $15.90</h3>
+                            </div>
+                            <a href="#" class="btn karl-btn mt-30">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ****** Offer Area End ****** -->
+
+        <!-- ****** Popular Brands Area Start ****** -->
+        <section class="karl-testimonials-area section_padding_100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section_heading text-center">
+                            <h2>Testimonials</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8">
+                        <div class="karl-testimonials-slides owl-carousel">
+
+                            <!-- Single Testimonial Area -->
+                            <div class="single-testimonial-area text-center">
+                                <span class="quote">"</span>
+                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
+                                <div class="testimonial-info d-flex align-items-center justify-content-center">
+                                    <div class="tes-thumbnail">
+                                        <img src="static/img/bg-img/tes-1.jpg" alt="">
+                                    </div>
+                                    <div class="testi-data">
+                                        <p>Michelle Williams</p>
+                                        <span>Client, Los Angeles</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Testimonial Area -->
+                            <div class="single-testimonial-area text-center">
+                                <span class="quote">"</span>
+                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
+                                <div class="testimonial-info d-flex align-items-center justify-content-center">
+                                    <div class="tes-thumbnail">
+                                        <img src="static/img/bg-img/tes-1.jpg" alt="">
+                                    </div>
+                                    <div class="testi-data">
+                                        <p>Michelle Williams</p>
+                                        <span>Client, Los Angeles</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Testimonial Area -->
+                            <div class="single-testimonial-area text-center">
+                                <span class="quote">"</span>
+                                <h6>Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. Aliquam finibus nulla quam, a iaculis justo finibus non. Suspendisse in fermentum nunc.Nunc pulvinar molestie sem id blandit. Nunc venenatis interdum mollis. </h6>
+                                <div class="testimonial-info d-flex align-items-center justify-content-center">
+                                    <div class="tes-thumbnail">
+                                        <img src="static/img/bg-img/tes-1.jpg" alt="">
+                                    </div>
+                                    <div class="testi-data">
+                                        <p>Michelle Williams</p>
+                                        <span>Client, Los Angeles</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- ****** Popular Brands Area End ****** -->
+
+        {% include 'footer.html' %}
+    </div>
+    <!-- /.wrapper end -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="static/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="static/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="static/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="static/js/active.js"></script>
+
+</body>
+
+</html>
