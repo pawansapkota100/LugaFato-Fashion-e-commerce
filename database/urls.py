@@ -31,4 +31,7 @@ urlpatterns = [
     path('shopping_details/', views.shopping_details, name='shopping_details'),
     path('contact/', views.contact_view, name='contact'),
 
+
+
+
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

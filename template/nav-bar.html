@@ -145,10 +145,14 @@
                                 {% if user.is_authenticated %}
                             <p>Welcome, {{ user.username }}!</p>
                             <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" >Logout</a></li>
+
+                        
+
                                 {% else %}
                                 <li class="nav-item"><a class="nav-link" href="/login">login</a></li>
                                <p>Guest user</p>
                                 {% endif %}
+                                
 
                             </ul>
                         </div>

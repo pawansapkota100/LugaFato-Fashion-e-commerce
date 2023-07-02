@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 
 # Create your views here.
@@ -126,8 +128,7 @@ def shopping_details(request):
         # Update the total amount in the order
         order.total_amount = total_amount
         order.save()
-        from django.template.loader import render_to_string
-        from django.utils.html import strip_tags
+    
 
         subject = 'Order Details'
         html_message = render_to_string('order_email.html', {'order': order})  # Assuming you have an order_email.html template
@@ -140,10 +141,6 @@ def shopping_details(request):
         # Additional processing or redirection can be done here
 
     return render(request, 'checkout.html')
-
-
-
-
 
 
 def signup(request):
@@ -223,3 +220,4 @@ def contact_view(request):
         return redirect('/')  # Redirect to a success page
     
     return render(request, 'contact.html')
+

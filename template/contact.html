@@ -23,9 +23,9 @@
         {% include "top.html" %}</div>
         <!-- contact.html -->
 <!-- contact.html -->
-<h2>Contact Us</h2>
+<h2 class="ml-4">Contact Us</h2>
 
-<form method="post" action="{% url 'contact' %}">
+<form class="ml-4" method="post" action="{% url 'contact' %}">
   {% csrf_token %}
   
   <div class="form-group">

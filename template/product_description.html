@@ -28,66 +28,7 @@
         {% include "nav-bar.html" %}
             
         
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-5">
-                    <div class="quickview_pro_img">
-                        <img src=" alt="">
-                    </div>
-                </div>
-                <div class="col-12 col-lg-7">
-                    <div class="quickview_pro_des">
-                        <h4 class="title">{{list.name}}</h4>
-                        <div class="top_seller_product_rating mb-15">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                        </div>
-                        <h5 class="price">{{list.price}}</h5>
-                        <p>{{list.description}}</p>
-                        
-                    </div>
-                    <!-- Add to Cart Form -->
-                    <form class="cart" method="post">
-                        <div class="quantity">
-                            <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-
-                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
-
-                            <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                        </div>
-                        
-                        <!-- Wishlist -->
-                        <div class="modal_pro_wishlist">
-                            <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
-                        </div>
-                        <!-- Compare -->
-                        
-                        </form>
-
-                    <div class="share_wf mt-30">
-                        <p>Share With Friend</p>
-                        <div class="_icon">
-                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                        </div>
-                        
-                        
-                    </div>
-                 
-                    <div class="item-right">
-                        <a href="{% url 'cart_add' list.id %}"><button> Add to cart</button></a>
-                        
-                     
-                        </div>
-                       
-
-                </div>
-            </div> 
+        
         
             
             {% for list in product %}
@@ -95,12 +36,12 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-6">
-        <img src="{{list.image.url}} class="img-fluid" alt="Product Image">
+        <img src="{{list.image.url}}" class="img-fluid" alt="Product Image">
       </div>
       <div class="col-md-6">
         <h2>{{list.name}}</h2>
         <p class="text-muted">{{list.category}}</p>
-        <h4 class="text-primary">{{list.price}}</h4>
+        <h4 class="text-primary">Rs.{{list.price}}</h4>
         <p class="mt-4">{{list.description}}</p>
         <div class="rating">
           <h5>Rating:</h5>
@@ -134,7 +75,7 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-primary mt-4">Add to Cart</button>
+        <button><a href="{% url 'cart_add' list.id %}"class="add-to-cart-btn">ADD TO CART</a></button>
       </div>
     </div>
   </div>
