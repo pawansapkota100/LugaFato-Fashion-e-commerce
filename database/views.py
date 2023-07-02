@@ -33,7 +33,6 @@ def store(request):
 def product(request,id):
     pro=Product.objects.filter(id=id)
     context={"product":pro}
-    print("hello world")
     print(product)
     return render(request,"product_description.html",context)
 
@@ -127,6 +126,16 @@ def shopping_details(request):
         # Update the total amount in the order
         order.total_amount = total_amount
         order.save()
+        from django.template.loader import render_to_string
+        from django.utils.html import strip_tags
+
+        subject = 'Order Details'
+        html_message = render_to_string('order_email.html', {'order': order})  # Assuming you have an order_email.html template
+        plain_message = strip_tags(html_message)
+        to_email = [email]  # Email address of the customer
+
+    send_mail(subject, plain_message, settings.DEFAULT_FROM_EMAIL, to_email, html_message=html_message)
+
 
         # Additional processing or redirection can be done here
 
@@ -144,6 +153,10 @@ def signup(request):
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
 
+        # Check if the username already exists
+        if User.objects.filter(username=username).exists():
+            return redirect('/error')  # Show an error page
+
         if password == confirm_password:
             # Create the user
             user = User.objects.create_user(username=username, password=password)
@@ -154,7 +167,6 @@ def signup(request):
             return redirect('login')
         else:
             # Passwords don't match, show an error message
-            error_message = 'Passwords do not match. Please try again.'
             return redirect('/error')
     
     return render(request, 'signup.html')
@@ -185,3 +197,29 @@ def logout_view(request):
 
 def error_view(request):
     return render(request, 'error.html')
+
+from django.core.mail import send_mail
+from django.conf import settings
+
+def contact_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        subject = 'Thank you for contacting us'
+        body = 'Dear customer, thank you for reaching out to us. We will respond to your inquiry shortly.'
+
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,  # Sender's email address
+            [email],  # List of recipient email addresses
+            fail_silently=False,
+        )
+        query=Message(name=name, email=email, message=message)
+        query.save()
+        
+        
+        return redirect('/')  # Redirect to a success page
+    
+    return render(request, 'contact.html')

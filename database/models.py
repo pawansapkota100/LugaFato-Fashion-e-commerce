@@ -64,3 +64,8 @@ class OrderItem(models.Model):
     subtotal = models.DecimalField(max_digits=10, decimal_places=2)
 
 
+class Message(models.Model):
+    name= models.CharField(max_length=30)
+    email= models.CharField(max_length=50)
+    message=models.CharField( max_length=250)
+    

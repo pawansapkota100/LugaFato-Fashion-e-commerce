@@ -97,14 +97,17 @@
                                                 <span class="pull-right">Price: {{ value.price|multiply:value.quantity }}</span>
                                                 {% endfor %}
                                             </li>
+                                            {% if request.session.cart %}
                                             <li>
-                                                <a href="{% url 'cart_clear' %}" class="btn btn-sm btn-cart">clear</a>
+                                                <a href="{% url 'cart_clear' %}" class="btn btn-sm btn-cart">Clear</a>
                                                 <a href="checkout\" class="btn btn-sm btn-checkout">Checkout</a>
-                                                <span class="pull-right">Item:  {{request.session.cart|length}} </span>
-
+                                                <span class="pull-right">Item: {{ request.session.cart|length }}</span>
                                             </li>
-                                            
+                                            {% endif %}
                                         </ul>
+                                        
+                                        
+                                        
                                     </div>
                                     <div class="header-right-side-menu ml-15">
                                         <a href="#" id="sideMenuBtn"><i class="ti-menu" aria-hidden="true"></i></a>
@@ -137,7 +140,7 @@
                             <ul class="navbar-nav animated" id="nav">
                                 <li ><a class="nav-link" href="{% url "index"%}">Home</a></li>
                                 <li><a class="nav-link" href="{% url "store"%}">Shop</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url "contact"%}">Contact</a></li>
                                 
                                 {% if user.is_authenticated %}
                             <p>Welcome, {{ user.username }}!</p>

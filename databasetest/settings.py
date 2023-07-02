@@ -136,3 +136,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'images/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CART_SESSION_ID = 'cart'
+
+
+# Email
+# Update the email settings according to your setup
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'lugafoto23@gmail.com'
+EMAIL_HOST_PASSWORD = 'zfrcrzihufbjcjpo'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = 'lugafoto23@gmail.comm'

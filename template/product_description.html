@@ -26,14 +26,13 @@
     </head>
     <body>
         {% include "nav-bar.html" %}
-        {% for list in product %}
             
         
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-5">
                     <div class="quickview_pro_img">
-                        <img src="{{list.image.url}}" alt="">
+                        <img src=" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-lg-7">
@@ -85,14 +84,64 @@
                         
                      
                         </div>
-                        {% endfor %}
+                       
 
                 </div>
             </div> 
         
-    
             
-</div >
+            {% for list in product %}
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{list.image.url}} class="img-fluid" alt="Product Image">
+      </div>
+      <div class="col-md-6">
+        <h2>{{list.name}}</h2>
+        <p class="text-muted">{{list.category}}</p>
+        <h4 class="text-primary">{{list.price}}</h4>
+        <p class="mt-4">{{list.description}}</p>
+        <div class="rating">
+          <h5>Rating:</h5>
+          <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+          <span class="text-muted">(4.0)</span>
+        </div>
+        <div class="seller-info mt-4">
+          <h5>Seller Information:</h5>
+          <p class="text-muted">{{list.supplier}}</p>
+        </div>
+        <div class="reviews mt-4">
+          <h5>Customer Reviews:</h5>
+          <div class="card">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-muted">Reviewer Name</h6>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquam mauris vitae
+                eleifend vestibulum. Donec a ligula in neque posuere viverra eu id magna.</p>
+              <div class="rating">
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+              </div>
+            </div>
+          </div>
+          <div class="card mt-3">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-muted">Reviewer Name</h6>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquam mauris vitae
+                eleifend vestibulum. Donec a ligula in neque posuere viverra eu id magna.</p>
+              <div class="rating">
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary mt-4">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
         {% include "footer.html" %}
     </body>
 </html>

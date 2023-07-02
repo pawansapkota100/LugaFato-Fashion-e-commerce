@@ -131,25 +131,21 @@
 
                                 <!-- Single gallery Item -->
                                 {% for item in list %}
-                                <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.2s">
-                                    <!-- Product Image -->
+                                <div class="card col-12 col-sm-6 col-lg-4 single_gallery_item wow">
+                                    <img src={{item.image.url}}  class="card-img-top" alt="Clothing Item">
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{item.name}}</h5>
+                                      <p class="card-text">{{item.category}}</p>
+                                      <p class="card-text"><strong>Price: {{item.price}}</strong></p>
+                                      <div class= "row">
+                                      <a href="{% url 'cart_add' item.id %}" class="btn btn-primary btn-danger mr-2">Add to Cart</a>
+                                      <a href="{% url 'product' item.id %}" class="btn btn-primary btn-danger">View Product</a>
+                                      </div>
+                                    </div>
+                                  </div>
                                     
                                     
-                                    <div class="product-img">
-                                        <img src={{item.image.url}} alt="">
-                                        <div class="product-quicview">
-                                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- Product Description -->
-                                    <div class="product-description">
-                                        <h4 class="product-price">{{item.price}}</h4>
-                                        <p>{{item.name}}</p>
-                                        <!-- Add to Cart -->
-                                        <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                        
-                                    </div>
-                                </div>
+                                
                                 {% endfor %}
                                 
 
