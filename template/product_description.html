@@ -25,7 +25,7 @@
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
     </head>
     <body>
-        {% include "nav-bar.html" %}
+        {% include "top.html" %}
             
         
         
@@ -52,6 +52,9 @@
           <h5>Seller Information:</h5>
           <p class="text-muted">{{list.supplier}}</p>
         </div>
+        <div class="product-price  text-white text-center">
+        <button ><a href="{% url 'cart_add' list.id %}"class=" btn  btn-danger ">ADD TO CART</a></button>
+        </div>
         <div class="reviews mt-4">
           <h5>Customer Reviews:</h5>
           <div class="card">
@@ -75,7 +78,7 @@
             </div>
           </div>
         </div>
-        <button><a href="{% url 'cart_add' list.id %}"class="add-to-cart-btn">ADD TO CART</a></button>
+        
       </div>
     </div>
   </div>

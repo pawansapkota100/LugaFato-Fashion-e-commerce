@@ -221,3 +221,13 @@ def contact_view(request):
     
     return render(request, 'contact.html')
 
+def searchproduct(request):
+    if request.method == 'GET':  # Check the request method
+        product = request.GET.get("search")  # Get the search query from the request's GET parameters
+        search = Product.objects.filter(name__icontains=product)  # Perform the case-insensitive search
+        
+        context = {
+            "list": search
+        }
+        
+        return render(request, 'shop.html', context)

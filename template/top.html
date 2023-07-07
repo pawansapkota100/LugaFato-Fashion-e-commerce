@@ -11,7 +11,7 @@
                         <!-- Logo Area -->
                         <div class="top_logo">
                             <div class="d-flex align-items-left" style="height: 100px; width: 100px;">
-                            <a href="#"><img src='{% static "/img/core-img/Lugafatologo.png" %}' alt=""></a>
+                            <a href="/"><img src='{% static "/img/core-img/Lugafatologo.png" %}' alt=""></a>
                             
                         </div>
                         
@@ -39,11 +39,16 @@
         <div class="row h-100">
             <div class="col-12 d-md-flex justify-content-between">
                 <!-- Header Social Area -->
-                <div class="header-social-area">
-                    <a href="#"><span class="karl-level">Share</span> <i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                <div class="search">
+                    <form action="/search" method="get">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="Search" id="search-input" name="search">
+                          <div class="input-group-append">
+                            <button class="btn btn-info" type="submit" id="search-button">Search</button>
+                          </div>
+                        </div>
+                      </form>
+
                 </div>
                 <!-- Menu Area -->
                 <div class="main-menu-area">

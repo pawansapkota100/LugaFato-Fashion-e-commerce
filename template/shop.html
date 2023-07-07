@@ -105,12 +105,12 @@
                             <div class="widget recommended">
                                 <h6 class="widget-title mb-30">Recommended</h6>
 
-                                <div class="widget-desc">
+                                <div class="widget-desc mr-4">
                                     <!-- Single Recommended Product -->
                                    {% for data in filter %}
                                     <div class="single-recommended-product d-flex mb-30">
                                         <div class="single-recommended-thumb mr-3">
-                                            <img src="{{data.image.url}}" alt="">
+                                           <a href="{% url 'product' data.id %}"> <img src="{{data.image.url}}" alt=""></a>
                                         </div>
                                         <div class="single-recommended-desc">
                                             <h6>{{data.name}}</h6>
