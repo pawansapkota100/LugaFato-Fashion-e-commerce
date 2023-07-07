@@ -114,7 +114,7 @@
                                         </div>
                                         <div class="single-recommended-desc">
                                             <h6>{{data.name}}</h6>
-                                            <p>{{data.price}}</p>
+                                            <p>NPR. {{data.price}}</p>
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -136,7 +136,7 @@
                                     <div class="card-body">
                                       <h5 class="card-title">{{item.name}}</h5>
                                       <p class="card-text">{{item.category}}</p>
-                                      <p class="card-text"><strong>Price: {{item.price}}</strong></p>
+                                      <p class="card-text"><strong>Price: NPR.{{item.price}}</strong></p>
                                       <div class= "row">
                                       <a href="{% url 'cart_add' item.id %}" class="btn btn-primary btn-danger mr-2">Add to Cart</a>
                                       <a href="{% url 'product' item.id %}" class="btn btn-primary btn-danger">View Product</a>
