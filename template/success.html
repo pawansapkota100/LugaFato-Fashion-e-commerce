@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>lugafato - Fashion Ecommerce Template | Checkout</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href='{% static "img/core-img/favicon.ico" %}'>
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href='{% static "css/core-style.css" %}'>
+    <link rel="stylesheet" href='{% static "style.css" %}'>
+
+    <!-- Responsive CSS -->
+    
+    <link href="{% static "css/responsive.css" %} "rel="stylesheet">
+
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f1f1f1;
+      }
+      
+      #success-page {
+        text-align: center;
+      }
+      
+      .animation {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+      }
+      
+      .circle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #36b55c;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      
+      @keyframes pulse {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0;
+        }
+      }
+      
+</style>
+
+</head>
+<body>
+    
+    <div>
+        {% include "top.html" %}
+    </div>
+  <div id="success-page">
+    <h1>Success!</h1>
+    <p>Your action was successful.</p>
+    <div class="animation">
+      <div class="circle"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

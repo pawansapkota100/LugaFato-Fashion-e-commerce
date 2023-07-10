@@ -46,12 +46,13 @@ class Order(models.Model):
         ('pending', 'Pending'),
         ('shipped', 'Shipped'),
         ('delivered', 'Delivered'),
+        ('paid', 'paid'),
     ]
 
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     order_date = models.DateTimeField(auto_now_add=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES,default="pending")
 
     def __str__(self):
         products = ", ".join([item.product.name for item in self.orderitem_set.all()])
@@ -72,8 +73,9 @@ class Message(models.Model):
 
 class Transaction(models.Model):
     transaction_id = models.CharField(max_length=100)
-    status = models.CharField(max_length=50)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+
+
 
     def __str__(self):
         return self.transaction_id

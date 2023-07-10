@@ -32,6 +32,7 @@ urlpatterns = [
     path('contact/', views.contact_view, name='contact'),
     path("search/", views.searchproduct, name='searchproduct'),
     path('paymentmethod/',views.paymentmethod, name='paymentmethod'),
+    path('save-transaction-details', views.save_transaction_details, name='save_transaction_details'),
 
 
 

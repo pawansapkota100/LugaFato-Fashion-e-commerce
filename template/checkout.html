@@ -205,13 +205,94 @@
               });
             },
             onApprove: function(data, actions) {
-              // Capture the funds from the transaction
-              return actions.order.capture().then(function(details) {
-                // Display a success message to the buyer
-                alert('Transaction completed by ' + details.payer.name.given_name + '! Transaction ID: ' + details.id);
-                // TODO: Add your own success handling code here
-              });
+                // Capture the funds from the transaction
+                return actions.order.capture().then(function(details) {
+                    var form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '/save-transaction-details'; // Replace with your endpoint URL
+
+                    // Create hidden input fields for transaction details
+                    var transactionIdInput = document.createElement('input');
+                    transactionIdInput.type = 'hidden';
+                    transactionIdInput.name = 'transaction_id';
+                    transactionIdInput.value = details.id;
+                    form.appendChild(transactionIdInput);
+            
+                    var buyerNameInput = document.createElement('input');
+                    buyerNameInput.type = 'hidden';
+                    buyerNameInput.name = 'buyer_name';
+                    buyerNameInput.value = details.payer.name.given_name;
+                    form.appendChild(buyerNameInput);
+
+                    // Get the CSRF token from the cookies
+                    function getCookie(name) {
+                    var cookieValue = null;
+                    if (document.cookie && document.cookie !== '') {
+                        var cookies = document.cookie.split(';');
+                        for (var i = 0; i < cookies.length; i++) {
+                        var cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                        }
+                    }
+                    return cookieValue;
+                    }
+
+                    // Create the CSRF token input field
+                    var csrfInput = document.createElement('input');
+                    csrfInput.type = 'hidden';
+                    csrfInput.name = 'csrfmiddlewaretoken';
+                    csrfInput.value = getCookie('csrftoken'); // Get the CSRF token value from the cookies
+
+                    // Append the CSRF token input field to the form
+                    form.appendChild(csrfInput);
+
+                    var fullNameInput = document.querySelector('input[name="full_name"]');
+                    var countryInput = document.querySelector('select[name="country"]');
+                    var addressInput = document.querySelector('input[name="address"]');
+                    var phoneInput = document.querySelector('input[name="phone"]');
+                    var emailInput = document.querySelector('input[name="email"]');
+
+                    // Create hidden input fields for other form values
+                    var fullNameHiddenInput = document.createElement('input');
+                    fullNameHiddenInput.type = 'hidden';
+                    fullNameHiddenInput.name = 'full_name';
+                    fullNameHiddenInput.value = fullNameInput.value;
+                    form.appendChild(fullNameHiddenInput);
+
+                    var countryHiddenInput = document.createElement('input');
+                    countryHiddenInput.type = 'hidden';
+                    countryHiddenInput.name = 'country';
+                    countryHiddenInput.value = countryInput.value;
+                    form.appendChild(countryHiddenInput);
+
+                    var addressHiddenInput = document.createElement('input');
+                    addressHiddenInput.type = 'hidden';
+                    addressHiddenInput.name = 'address';
+                    addressHiddenInput.value = addressInput.value;
+                    form.appendChild(addressHiddenInput);
+
+                    var phoneHiddenInput = document.createElement('input');
+                    phoneHiddenInput.type = 'hidden';
+                    phoneHiddenInput.name = 'phone';
+                    phoneHiddenInput.value = phoneInput.value;
+                    form.appendChild(phoneHiddenInput);
+
+                    var emailHiddenInput = document.createElement('input');
+                    emailHiddenInput.type = 'hidden';
+                    emailHiddenInput.name = 'email';
+                    emailHiddenInput.value = emailInput.value;
+                    form.appendChild(emailHiddenInput);
+
+                    // Submit the form
+                    document.body.appendChild(form);
+                    form.submit();
+
+                });
             }
+            
           }).render('#paypal-button-container');
     </script>
     

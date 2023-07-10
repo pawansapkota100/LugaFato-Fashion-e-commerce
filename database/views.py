@@ -232,3 +232,79 @@ def searchproduct(request):
         }
         
         return render(request, 'shop.html', context)
+    
+def save_transaction_details(request):
+    if request.method == 'POST':
+        # Retrieve the transaction details from the request
+        # transaction_id = request.POST.get('transaction_id')
+
+
+        # # Save the transaction details in the database or perform other necessary actions
+        # # Example: Saving the details in a Transaction model
+        # transaction = Transaction.objects.create(
+        #     transaction_id=transaction_id,
+        # )
+        # transaction.save()
+
+        full_name = request.POST.get('full_name')
+        country = request.POST.get('country')
+        address = request.POST.get('address')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+
+        # Create a new customer instance
+        customer = Customer(
+            name=full_name,
+            country=country,
+            address=address,
+            phone=phone,
+            email=email
+        )
+        customer.save()
+
+        # Create a new order instance
+        order = Order(
+            customer=customer,
+            total_amount=0,  # Set the initial total amount to 0
+            status='paid'  # Set the initial status to 'paid'
+        )
+        order.save()
+
+        # Get the cart items from the session
+        cart_items = request.session.get('cart', {})
+
+        # Calculate the total amount and create order items
+        total_amount = 0
+        for product_id, item in cart_items.items():
+            product = Product.objects.get(id=product_id)
+            quantity = item['quantity']
+            price = product.price
+            subtotal = quantity * price
+            total_amount += subtotal
+
+            # Create an order item
+            order_item = OrderItem(
+                order=order,
+                product=product,
+                quantity=quantity,
+                price=price,
+                subtotal=subtotal
+            )
+            order_item.save()
+
+        # Update the total amount in the order
+        order.total_amount = total_amount
+        order.save()
+
+        subject = 'Order Details'
+        html_message = render_to_string('order_email.html', {'order': order})  # Assuming you have an order_email.html template
+        plain_message = strip_tags(html_message)
+        to_email = [email]  # Email address of the customer
+
+        send_mail(subject, plain_message, settings.DEFAULT_FROM_EMAIL, to_email, html_message=html_message)
+
+        # Return a response indicating the success or redirect to another page
+        return render(request, 'success.html')
+    else:
+        # Return an error response or redirect to an error page
+        return render(request, 'error.html')
