@@ -10,7 +10,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Karl - Fashion Ecommerce Template | Checkout</title>
+    <title>lugafato - Fashion Ecommerce Template | Checkout</title>
 
     <!-- Favicon  -->
     <link rel="icon" href='{% static "img/core-img/favicon.ico" %}'>
@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    {% include "nav-bar.html" %}
+    {% include "top.html" %}
     <div id="wrapper">
 
         <!-- ****** Checkout Area Start ****** -->
@@ -52,17 +52,18 @@
                                     <div class="col-12 mb-3">
                                         <label for="country">Country <span>*</span></label>
                                         <select class="custom-select d-block w-100" id="country" name="country">
-                                        <option value="usa">Nepal</option>   
-                                        <option value="usa">United States</option>
-                                        <option value="uk">United Kingdom</option>
-                                        <option value="ger">Germany</option>
-                                        <option value="fra">France</option>
-                                        <option value="ind">India</option>
-                                        <option value="aus">Australia</option>
-                                        <option value="bra">Brazil</option>
-                                        <option value="cana">Canada</option>
-                                    </select>
+                                            <option value="nepal">Nepal</option>
+                                            <option value="usa">United States</option>
+                                            <option value="uk">United Kingdom</option>
+                                            <option value="ger">Germany</option>
+                                            <option value="fra">France</option>
+                                            <option value="ind">India</option>
+                                            <option value="aus">Australia</option>
+                                            <option value="bra">Brazil</option>
+                                            <option value="cana">Canada</option>
+                                        </select>
                                     </div>
+                                    
                                     <div class="col-12 mb-3">
                                         <label for="street_address">Address <span>*</span></label>
                                         <input type="text" name= "address"class="form-control mb-3" id="street_address" value="">
@@ -85,10 +86,10 @@
                                        
                                     
                                     <button type= submit class="btn-danger mt-4 align-center">Place Order</button>
+                                    <div id="paypal-button-container"></div>
                                 </div>
                             </div>
                             </form>
-                            <button class="btn-danger mt-4 align-center" id="payment-button">Pay with Khalti</button>
                         </div>
                     </div>
 
@@ -109,6 +110,12 @@
 
 
                                 <li><span>{{value.name}} <p>{{value.quantity}}x - <span class="price">{{value.price}} </span></p> </span></span> <span>{{ value.price|multiply:value.quantity }}</span></li>
+                                <script>
+                                    var prices = 0;
+                                    {% for key, value in request.session.cart.items %}
+                                      prices += {{ value.price|multiply:value.quantity }};
+                                    {% endfor %}
+                                  </script>
                                 {% endfor %}
                                 
                             </ul>
@@ -178,51 +185,36 @@
         {% include "footer.html" %}
         <!-- ****** Footer Area End ****** -->
     </div>
-    <html>
-<head>
-    <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
-</head>
-<body>
-    ...
-    <!-- Place this where you need payment button -->
-    <button id="payment-button">Pay with Khalti</button>
-    <!-- Place this where you need payment button -->
-    <!-- Paste this code anywhere in you body tag -->
-    <script>
-        var config = {
-            // replace the publicKey with yours
-            "publicKey": "test_public_key_dc74e0fd57cb46cd93832aee0a390234",
-            "productIdentity": "1234567890",
-            "productName": "Dragon",
-            "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
-            "paymentPreference": [
-                "KHALTI",
-                "EBANKING",
-                "MOBILE_BANKING",
-                "CONNECT_IPS",
-                "SCT",
-                ],
-            "eventHandler": {
-                onSuccess (payload) {
-                    // hit merchant api for initiating verfication
-                    console.log(payload);
-                },
-                onError (error) {
-                    console.log(error);
-                },
-                onClose () {
-                    console.log('widget is closing');
-                }
-            }
-        };
 
-        var checkout = new KhaltiCheckout(config);
-        var btn = document.getElementById("payment-button");
-        btn.onclick = function () {
-            // minimum transaction amount must be 10, i.e 1000 in paisa.
-            checkout.show({amount: 1000});
-        }
+
+
+    
+    <!-- Set up a container element for the button -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AREccBWy4VhcJQkXLNe_x2U8QQEDi97kBBW-0my62sipxIvEcLzm7_yyBLOzhDT-QuvqkBBc8RMGVqk8&components=buttons"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AREccBWy4VhcJQkXLNe_x2U8QQEDi97kBBW-0my62sipxIvEcLzm7_yyBLOzhDT-QuvqkBBc8RMGVqk8&currency=USD"></script>
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+              // Set up the transaction
+              return actions.order.create({
+                purchase_units: [{
+                  amount: {
+                    value: prices // Set the amount here
+                  }
+                }]
+              });
+            },
+            onApprove: function(data, actions) {
+              // Capture the funds from the transaction
+              return actions.order.capture().then(function(details) {
+                // Display a success message to the buyer
+                alert('Transaction completed by ' + details.payer.name.given_name + '! Transaction ID: ' + details.id);
+                // TODO: Add your own success handling code here
+              });
+            }
+          }).render('#paypal-button-container');
     </script>
+    
     <!-- Paste this code anywhere in you body tag -->
     ...
     <!-- jQuery (Necessary for All JavaScript Plugins) -->

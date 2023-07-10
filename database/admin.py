@@ -8,6 +8,7 @@ admin.site.register(Category)
 admin.site.register(Supplier)
 admin.site.register(Product)
 admin.site.register(Customer)
+admin.site.register(Transaction)
 
 admin.site.register(OrderItem)
 admin.site.register(Message)

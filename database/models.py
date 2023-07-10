@@ -69,4 +69,12 @@ class Message(models.Model):
     name= models.CharField(max_length=30)
     email= models.CharField(max_length=50)
     message=models.CharField( max_length=250)
+
+class Transaction(models.Model):
+    transaction_id = models.CharField(max_length=100)
+    status = models.CharField(max_length=50)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.transaction_id
     

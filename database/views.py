@@ -135,12 +135,13 @@ def shopping_details(request):
         plain_message = strip_tags(html_message)
         to_email = [email]  # Email address of the customer
 
-    send_mail(subject, plain_message, settings.DEFAULT_FROM_EMAIL, to_email, html_message=html_message)
-
-
+        send_mail(subject, plain_message, settings.DEFAULT_FROM_EMAIL, to_email, html_message=html_message)
         # Additional processing or redirection can be done here
 
     return render(request, 'checkout.html')
+
+def paymentmethod(request):
+    render(request, "paymentmethod")
 
 
 def signup(request):
